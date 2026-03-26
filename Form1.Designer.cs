@@ -77,6 +77,7 @@
             // 
             // txtResult
             // 
+            txtResult.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
             txtResult.Location = new Point(82, 149);
             txtResult.Multiline = true;
             txtResult.Name = "txtResult";

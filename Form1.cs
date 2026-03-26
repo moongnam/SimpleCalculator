@@ -25,7 +25,7 @@ namespace SimpleCalculator
             button_8.Click += NumberButton_Click;
             button_9.Click += NumberButton_Click;
 
-            // 모든 연산자 버튼 연결 (민서 님이 정한 이름 그대로!)
+            // 모든 연산자 버튼 연결
             buttonP.Click += OperatorButton_Click; // +
             buttonM.Click += OperatorButton_Click; // -
             buttonT.Click += OperatorButton_Click; // x
@@ -33,14 +33,12 @@ namespace SimpleCalculator
 
             buttonR.Click += EqualButton_Click;    // =
 
-            // 기능 버튼
-            buttonCE.Click += (s, e) => { txtResult.Text = "0"; _isNewNum = true; UpdateRealTimeFormula(); };
-            buttonC.Click += ClearAll;
-            // Del 버튼이 있다면 아래 주석을 해제하고 연결하세요.
-            // buttonDel.Click += btnDel_Click; 
+            // 기능 버튼 연결
+            buttonCE.Click += buttonCE_Click_Action; // CE: 현재 입력값 삭제
+            buttonC.Click += ClearAll;               // C: 전체 초기화
+            buttonDel.Click += buttonDel_Click;      // Del: 한 글자 삭제
         }
 
-        // 1. 숫자 버튼 클릭 시
         private void NumberButton_Click(object? sender, EventArgs? e)
         {
             if (sender is not Button btn) return;
@@ -54,36 +52,26 @@ namespace SimpleCalculator
             {
                 txtResult.Text += btn.Text;
             }
-
-            // [추가] 숫자를 누를 때마다 즉시 수식 업데이트
             UpdateRealTimeFormula();
         }
 
-        // 2. 연산자 버튼 클릭 시
         private void OperatorButton_Click(object? sender, EventArgs? e)
         {
             if (sender is not Button btn) return;
-
             if (!double.TryParse(txtResult.Text, out _firstNum)) return;
 
-            _operator = btn.Text; // +, -, x, ÷ 저장
+            _operator = btn.Text;
             _isNewNum = true;
-
-            // 연산자를 누르는 순간 위 칸을 "숫자 + " 형태로 업데이트
             txtNum1.Text = _firstNum + " " + _operator + " ";
         }
 
-        // 3. 결과(=) 버튼 클릭 시
         private void EqualButton_Click(object? sender, EventArgs? e)
         {
             if (string.IsNullOrEmpty(_operator)) return;
-
             double secondNum;
             if (!double.TryParse(txtResult.Text, out secondNum)) return;
 
             double result = 0;
-
-            // 사칙연산 로직 완성
             switch (_operator)
             {
                 case "+": result = _firstNum + secondNum; break;
@@ -95,29 +83,41 @@ namespace SimpleCalculator
                     break;
             }
 
-            // 결과 표시
             txtNum1.Text = $"{_firstNum} {_operator} {secondNum} = {result}";
             txtResult.Text = result.ToString();
-
             _isNewNum = true;
             _operator = "";
         }
 
-        // [새로 추가] 실시간 수식 표시 함수
-        private void UpdateRealTimeFormula()
+        // --- 여기서부터 요청하신 기능들입니다 ---
+
+        // 1. CE (Clear Entry): 현재 입력 중인 피연산자만 삭제
+        private void buttonCE_Click_Action(object? sender, EventArgs? e)
         {
-            // 연산자가 없는 상태(첫 번째 숫자 입력 중)라면 위 칸에 그대로 표시
-            if (string.IsNullOrEmpty(_operator))
-            {
-                txtNum1.Text = txtResult.Text;
-            }
-            // 연산자가 있는 상태(두 번째 숫자 입력 중)라면 "첫번째수 + 입력중인수" 표시
-            else
-            {
-                txtNum1.Text = _firstNum + " " + _operator + " " + txtResult.Text;
-            }
+            txtResult.Text = "0";
+            _isNewNum = true;
+            UpdateRealTimeFormula();
         }
 
+        // 2. Del (Backspace): 마지막 글자 하나만 삭제
+        private void buttonDel_Click(object? sender, EventArgs? e)
+        {
+            if (txtResult.Text.Length > 0)
+            {
+                // 한 글자 지우기
+                txtResult.Text = txtResult.Text.Substring(0, txtResult.Text.Length - 1);
+
+                // 지웠는데 비어있거나 "-"만 남았다면 "0"으로 변경
+                if (string.IsNullOrEmpty(txtResult.Text) || txtResult.Text == "-")
+                {
+                    txtResult.Text = "0";
+                    _isNewNum = true;
+                }
+            }
+            UpdateRealTimeFormula();
+        }
+
+        // 3. C (Clear): 전체 초기화 (기존 ClearAll 함수 활용)
         private void ClearAll(object? sender, EventArgs? e)
         {
             _firstNum = 0;
@@ -125,6 +125,18 @@ namespace SimpleCalculator
             _isNewNum = true;
             txtNum1.Text = "";
             txtResult.Text = "0";
+        }
+
+        private void UpdateRealTimeFormula()
+        {
+            if (string.IsNullOrEmpty(_operator))
+            {
+                txtNum1.Text = txtResult.Text;
+            }
+            else
+            {
+                txtNum1.Text = _firstNum + " " + _operator + " " + txtResult.Text;
+            }
         }
     }
 }
