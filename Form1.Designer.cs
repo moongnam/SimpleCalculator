@@ -51,6 +51,11 @@
             button_Pm = new Button();
             button_0 = new Button();
             button_dot = new Button();
+            checkTopMost = new CheckBox();
+            listHistory = new ListBox();
+            txtHistory = new TextBox();
+            button_Left = new Button();
+            button_Right = new Button();
             SuspendLayout();
             // 
             // txtTitle
@@ -88,7 +93,7 @@
             // buttonCE
             // 
             buttonCE.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            buttonCE.Location = new Point(82, 204);
+            buttonCE.Location = new Point(82, 257);
             buttonCE.Name = "buttonCE";
             buttonCE.Size = new Size(94, 52);
             buttonCE.TabIndex = 3;
@@ -99,7 +104,7 @@
             // buttonC
             // 
             buttonC.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            buttonC.Location = new Point(186, 204);
+            buttonC.Location = new Point(186, 257);
             buttonC.Name = "buttonC";
             buttonC.Size = new Size(94, 52);
             buttonC.TabIndex = 4;
@@ -109,7 +114,7 @@
             // buttonDel
             // 
             buttonDel.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            buttonDel.Location = new Point(286, 204);
+            buttonDel.Location = new Point(286, 257);
             buttonDel.Name = "buttonDel";
             buttonDel.Size = new Size(94, 52);
             buttonDel.TabIndex = 4;
@@ -120,7 +125,7 @@
             // 
             buttonD.Font = new Font("휴먼둥근헤드라인", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 129);
             buttonD.ForeColor = Color.Brown;
-            buttonD.Location = new Point(386, 204);
+            buttonD.Location = new Point(386, 257);
             buttonD.Name = "buttonD";
             buttonD.Size = new Size(94, 52);
             buttonD.TabIndex = 5;
@@ -131,7 +136,7 @@
             // 
             button_7.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_7.ForeColor = Color.SteelBlue;
-            button_7.Location = new Point(82, 262);
+            button_7.Location = new Point(82, 319);
             button_7.Name = "button_7";
             button_7.Size = new Size(94, 52);
             button_7.TabIndex = 6;
@@ -142,7 +147,7 @@
             // 
             buttonT.Font = new Font("함초롬돋움", 18F, FontStyle.Regular, GraphicsUnit.Point, 129);
             buttonT.ForeColor = Color.Brown;
-            buttonT.Location = new Point(386, 262);
+            buttonT.Location = new Point(386, 315);
             buttonT.Name = "buttonT";
             buttonT.Size = new Size(94, 52);
             buttonT.TabIndex = 7;
@@ -153,7 +158,7 @@
             // 
             buttonM.Font = new Font("함초롬돋움", 18F, FontStyle.Regular, GraphicsUnit.Point, 129);
             buttonM.ForeColor = Color.Brown;
-            buttonM.Location = new Point(386, 320);
+            buttonM.Location = new Point(386, 377);
             buttonM.Name = "buttonM";
             buttonM.Size = new Size(94, 52);
             buttonM.TabIndex = 8;
@@ -164,7 +169,7 @@
             // 
             buttonP.Font = new Font("함초롬돋움", 18F, FontStyle.Regular, GraphicsUnit.Point, 129);
             buttonP.ForeColor = Color.Brown;
-            buttonP.Location = new Point(386, 378);
+            buttonP.Location = new Point(386, 435);
             buttonP.Name = "buttonP";
             buttonP.Size = new Size(94, 52);
             buttonP.TabIndex = 9;
@@ -175,7 +180,7 @@
             // 
             buttonR.Font = new Font("함초롬돋움", 18F, FontStyle.Regular, GraphicsUnit.Point, 129);
             buttonR.ForeColor = Color.Brown;
-            buttonR.Location = new Point(386, 436);
+            buttonR.Location = new Point(386, 493);
             buttonR.Name = "buttonR";
             buttonR.Size = new Size(94, 52);
             buttonR.TabIndex = 10;
@@ -186,7 +191,7 @@
             // 
             button_8.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_8.ForeColor = Color.SteelBlue;
-            button_8.Location = new Point(186, 262);
+            button_8.Location = new Point(186, 319);
             button_8.Name = "button_8";
             button_8.Size = new Size(94, 52);
             button_8.TabIndex = 11;
@@ -197,7 +202,7 @@
             // 
             button_9.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_9.ForeColor = Color.SteelBlue;
-            button_9.Location = new Point(286, 262);
+            button_9.Location = new Point(286, 319);
             button_9.Name = "button_9";
             button_9.Size = new Size(94, 52);
             button_9.TabIndex = 12;
@@ -208,7 +213,7 @@
             // 
             button_4.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_4.ForeColor = Color.SteelBlue;
-            button_4.Location = new Point(82, 320);
+            button_4.Location = new Point(82, 377);
             button_4.Name = "button_4";
             button_4.Size = new Size(94, 52);
             button_4.TabIndex = 13;
@@ -219,7 +224,7 @@
             // 
             button_5.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_5.ForeColor = Color.SteelBlue;
-            button_5.Location = new Point(186, 320);
+            button_5.Location = new Point(186, 377);
             button_5.Name = "button_5";
             button_5.Size = new Size(94, 52);
             button_5.TabIndex = 14;
@@ -230,7 +235,7 @@
             // 
             button_6.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_6.ForeColor = Color.SteelBlue;
-            button_6.Location = new Point(286, 320);
+            button_6.Location = new Point(286, 377);
             button_6.Name = "button_6";
             button_6.Size = new Size(94, 52);
             button_6.TabIndex = 15;
@@ -241,7 +246,7 @@
             // 
             button_1.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_1.ForeColor = Color.SteelBlue;
-            button_1.Location = new Point(82, 378);
+            button_1.Location = new Point(82, 435);
             button_1.Name = "button_1";
             button_1.Size = new Size(94, 52);
             button_1.TabIndex = 16;
@@ -252,7 +257,7 @@
             // 
             button_2.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_2.ForeColor = Color.SteelBlue;
-            button_2.Location = new Point(186, 378);
+            button_2.Location = new Point(186, 435);
             button_2.Name = "button_2";
             button_2.Size = new Size(94, 52);
             button_2.TabIndex = 17;
@@ -263,7 +268,7 @@
             // 
             button_3.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_3.ForeColor = Color.SteelBlue;
-            button_3.Location = new Point(286, 378);
+            button_3.Location = new Point(286, 435);
             button_3.Name = "button_3";
             button_3.Size = new Size(94, 52);
             button_3.TabIndex = 18;
@@ -273,7 +278,7 @@
             // button_Pm
             // 
             button_Pm.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            button_Pm.Location = new Point(82, 436);
+            button_Pm.Location = new Point(82, 493);
             button_Pm.Name = "button_Pm";
             button_Pm.Size = new Size(94, 52);
             button_Pm.TabIndex = 19;
@@ -284,7 +289,7 @@
             // 
             button_0.Font = new Font("한컴 말랑말랑 Regular", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button_0.ForeColor = Color.SteelBlue;
-            button_0.Location = new Point(186, 436);
+            button_0.Location = new Point(186, 493);
             button_0.Name = "button_0";
             button_0.Size = new Size(94, 52);
             button_0.TabIndex = 20;
@@ -294,19 +299,77 @@
             // button_dot
             // 
             button_dot.Font = new Font("한컴 말랑말랑 Bold", 13.7999992F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            button_dot.Location = new Point(286, 436);
+            button_dot.Location = new Point(286, 493);
             button_dot.Name = "button_dot";
             button_dot.Size = new Size(94, 52);
             button_dot.TabIndex = 21;
             button_dot.Text = ".";
             button_dot.UseVisualStyleBackColor = true;
             // 
+            // checkTopMost
+            // 
+            checkTopMost.AutoSize = true;
+            checkTopMost.Location = new Point(12, 12);
+            checkTopMost.Name = "checkTopMost";
+            checkTopMost.Size = new Size(61, 24);
+            checkTopMost.TabIndex = 22;
+            checkTopMost.Text = "고정";
+            checkTopMost.UseVisualStyleBackColor = true;
+            // 
+            // listHistory
+            // 
+            listHistory.FormattingEnabled = true;
+            listHistory.Location = new Point(543, 52);
+            listHistory.Name = "listHistory";
+            listHistory.Size = new Size(336, 484);
+            listHistory.TabIndex = 23;
+            // 
+            // txtHistory
+            // 
+            txtHistory.Font = new Font("맑은 고딕", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            txtHistory.Location = new Point(543, 15);
+            txtHistory.Name = "txtHistory";
+            txtHistory.Size = new Size(76, 31);
+            txtHistory.TabIndex = 24;
+            txtHistory.Text = "History";
+            txtHistory.TextChanged += txtHistory_TextChanged;
+            // 
+            // button_Left
+            // 
+            button_Left.Font = new Font("휴먼둥근헤드라인", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            button_Left.ForeColor = Color.Brown;
+            button_Left.Location = new Point(82, 199);
+            button_Left.Name = "button_Left";
+            button_Left.Size = new Size(94, 52);
+            button_Left.TabIndex = 25;
+            button_Left.Text = "(";
+            button_Left.UseVisualStyleBackColor = true;
+            // 생성자 내부에서 수정
+            button_Left.Click += (s, e) => AddOpenParenthesis();
+            button_Right.Click += (s, e) => AddCloseParenthesis();
+            // 
+            // button_Right
+            // 
+            button_Right.Font = new Font("휴먼둥근헤드라인", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            button_Right.ForeColor = Color.Brown;
+            button_Right.Location = new Point(186, 199);
+            button_Right.Name = "button_Right";
+            button_Right.Size = new Size(94, 52);
+            button_Right.TabIndex = 26;
+            button_Right.Text = ")";
+            button_Right.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            ClientSize = new Size(569, 535);
+            ClientSize = new Size(929, 605);
+            Controls.Add(button_Right);
+            Controls.Add(button_Left);
+            Controls.Add(txtHistory);
+            Controls.Add(listHistory);
+            Controls.Add(checkTopMost);
             Controls.Add(button_dot);
             Controls.Add(button_0);
             Controls.Add(button_Pm);
@@ -334,6 +397,12 @@
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
+        }
+
+       
+        private void txtHistory_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void buttonCE_Click(object sender, EventArgs e)
@@ -381,5 +450,10 @@
         private Button button_Pm;
         private Button button_0;
         private Button button_dot;
+        private CheckBox checkTopMost;
+        private ListBox listHistory;
+        private TextBox txtHistory;
+        private Button button_Left;
+        private Button button_Right;
     }
 }
