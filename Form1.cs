@@ -5,15 +5,15 @@ namespace SimpleCalculator
 {
     public partial class Form1 : Form
     {
-        private double _firstNum = 0;      // 첫 번째 숫자 저장
-        private string _operator = "";     // 연산자 저장 (+, -, x, ÷)
-        private bool _isNewNum = true;     // 새로 숫자를 입력할 차례인지 확인
+        private double _firstNum = 0;
+        private string _operator = "";
+        private bool _isNewNum = true;
 
         public Form1()
         {
             InitializeComponent();
 
-            // 숫자 버튼 이벤트 연결 (0~9)
+            // 숫자 버튼 이벤트 연결
             button_0.Click += NumberButton_Click;
             button_1.Click += NumberButton_Click;
             button_2.Click += NumberButton_Click;
@@ -25,20 +25,21 @@ namespace SimpleCalculator
             button_8.Click += NumberButton_Click;
             button_9.Click += NumberButton_Click;
 
-            // 모든 연산자 버튼 연결
-            buttonP.Click += OperatorButton_Click; // +
-            buttonM.Click += OperatorButton_Click; // -
-            buttonT.Click += OperatorButton_Click; // x
-            buttonD.Click += OperatorButton_Click; // ÷
+            // 소수점 버튼 연결 (새로 추가)
+            button_dot.Click += button_dot_Click;
 
-            buttonR.Click += EqualButton_Click;    // =
-
-            // 기능 버튼 연결
-            buttonCE.Click += buttonCE_Click_Action; // CE: 현재 입력값 삭제
-            buttonC.Click += ClearAll;               // C: 전체 초기화
-            buttonDel.Click += buttonDel_Click;      // Del: 한 글자 삭제
+            // 연산자 및 기능 버튼 연결
+            buttonP.Click += OperatorButton_Click;
+            buttonM.Click += OperatorButton_Click;
+            buttonT.Click += OperatorButton_Click;
+            buttonD.Click += OperatorButton_Click;
+            buttonR.Click += EqualButton_Click;
+            buttonCE.Click += buttonCE_Click_Action;
+            buttonC.Click += ClearAll;
+            buttonDel.Click += buttonDel_Click;
         }
 
+        // --- 숫자 버튼 로직 (기존과 동일) ---
         private void NumberButton_Click(object? sender, EventArgs? e)
         {
             if (sender is not Button btn) return;
@@ -55,6 +56,25 @@ namespace SimpleCalculator
             UpdateRealTimeFormula();
         }
 
+        // --- [새로 추가] 소수점 버튼 클릭 로직 ---
+        private void button_dot_Click(object? sender, EventArgs? e)
+        {
+            // 1. 만약 새로운 숫자를 입력해야 하는 타이밍에 점을 찍으면 "0."으로 시작
+            if (_isNewNum)
+            {
+                txtResult.Text = "0.";
+                _isNewNum = false;
+            }
+            // 2. 이미 입력 중인 숫자에 점이 없는 경우에만 점을 추가 (중복 방지)
+            else if (!txtResult.Text.Contains("."))
+            {
+                txtResult.Text += ".";
+            }
+
+            UpdateRealTimeFormula();
+        }
+
+        // --- 연산자 및 결과 로직 (기존과 동일) ---
         private void OperatorButton_Click(object? sender, EventArgs? e)
         {
             if (sender is not Button btn) return;
@@ -89,9 +109,6 @@ namespace SimpleCalculator
             _operator = "";
         }
 
-        // --- 여기서부터 요청하신 기능들입니다 ---
-
-        // 1. CE (Clear Entry): 현재 입력 중인 피연산자만 삭제
         private void buttonCE_Click_Action(object? sender, EventArgs? e)
         {
             txtResult.Text = "0";
@@ -99,15 +116,11 @@ namespace SimpleCalculator
             UpdateRealTimeFormula();
         }
 
-        // 2. Del (Backspace): 마지막 글자 하나만 삭제
         private void buttonDel_Click(object? sender, EventArgs? e)
         {
             if (txtResult.Text.Length > 0)
             {
-                // 한 글자 지우기
                 txtResult.Text = txtResult.Text.Substring(0, txtResult.Text.Length - 1);
-
-                // 지웠는데 비어있거나 "-"만 남았다면 "0"으로 변경
                 if (string.IsNullOrEmpty(txtResult.Text) || txtResult.Text == "-")
                 {
                     txtResult.Text = "0";
@@ -117,7 +130,6 @@ namespace SimpleCalculator
             UpdateRealTimeFormula();
         }
 
-        // 3. C (Clear): 전체 초기화 (기존 ClearAll 함수 활용)
         private void ClearAll(object? sender, EventArgs? e)
         {
             _firstNum = 0;
